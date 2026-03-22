@@ -25,7 +25,7 @@
     }
     
     .container {
-      max-width: 900px;
+      max-width: 1000px;
       margin: 0 auto;
       padding: 1rem;
     }
@@ -49,13 +49,21 @@
       font-size: 0.95rem;
     }
     
-    .search-box {
+    .toolbar {
+      display: flex;
+      gap: 0.75rem;
       margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .search-box {
+      flex: 1;
+      min-width: 200px;
     }
     
     .search-box input {
       width: 100%;
-      padding: 1rem;
+      padding: 0.8rem 1rem;
       border: 2px solid var(--accent);
       border-radius: 12px;
       font-size: 1rem;
@@ -63,9 +71,22 @@
       outline: none;
     }
     
-    .search-box input:focus {
-      border-color: var(--accent-dark);
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+    .add-btn {
+      padding: 0.8rem 1.5rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background 0.2s;
+    }
+    
+    .add-btn:hover {
+      background: var(--accent-dark);
     }
     
     .tabs {
@@ -86,19 +107,13 @@
       transition: all 0.2s;
     }
     
-    .tab:hover {
-      background: #f5f5f5;
-    }
-    
-    .tab.active {
-      background: var(--accent);
-      color: white;
-    }
+    .tab:hover { background: #f5f5f5; }
+    .tab.active { background: var(--accent); color: white; }
     
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-      gap: 1rem;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.25rem;
     }
     
     .card {
@@ -117,27 +132,23 @@
     
     .card-img {
       width: 100%;
-      height: 140px;
+      height: 160px;
       object-fit: cover;
       background: #e8f5e9;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
     }
     
     .card-body {
-      padding: 0.75rem;
+      padding: 1rem;
     }
     
     .card-name {
-      font-weight: 600;
-      font-size: 1rem;
+      font-weight: 700;
+      font-size: 1.1rem;
       margin-bottom: 0.25rem;
     }
     
     .card-en {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-light);
       margin-bottom: 0.5rem;
     }
@@ -146,18 +157,15 @@
       display: inline-block;
       background: #e8f5e9;
       color: var(--accent-dark);
-      padding: 0.2rem 0.5rem;
+      padding: 0.25rem 0.6rem;
       border-radius: 8px;
-      font-size: 0.7rem;
+      font-size: 0.75rem;
     }
     
     .modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
+      top: 0; left: 0; right: 0; bottom: 0;
       background: rgba(0,0,0,0.6);
       z-index: 1000;
       align-items: center;
@@ -165,35 +173,28 @@
       padding: 1rem;
     }
     
-    .modal.show {
-      display: flex;
-    }
+    .modal.show { display: flex; }
     
     .modal-content {
       background: white;
       border-radius: 20px;
-      max-width: 500px;
+      max-width: 600px;
       width: 100%;
       max-height: 90vh;
       overflow-y: auto;
     }
     
-    .modal-header {
-      height: 200px;
+    .modal-img {
+      width: 100%;
+      height: 280px;
       object-fit: cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
       background: #e8f5e9;
     }
     
-    .modal-body {
-      padding: 1.5rem;
-    }
+    .modal-body { padding: 1.5rem; }
     
     .modal-name {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       margin-bottom: 0.25rem;
     }
@@ -203,20 +204,30 @@
       margin-bottom: 1rem;
     }
     
-    .modal-section {
-      margin-bottom: 1rem;
-    }
+    .modal-section { margin-bottom: 1.25rem; }
     
     .modal-section h3 {
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       color: var(--accent-dark);
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
     
-    .modal-section p {
-      line-height: 1.6;
-      color: var(--text);
+    .modal-section p { line-height: 1.7; }
+    
+    .wiki-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
     }
+    
+    .wiki-link:hover { text-decoration: underline; }
     
     .close-btn {
       position: fixed;
@@ -232,9 +243,75 @@
       display: none;
     }
     
-    .modal.show .close-btn {
-      display: block;
+    .modal.show .close-btn { display: block; }
+    
+    /* Add Plant Form */
+    .add-modal .modal-content { max-width: 500px; }
+    
+    .form-group {
+      margin-bottom: 1rem;
     }
+    
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+      font-size: 0.9rem;
+    }
+    
+    .form-group input, .form-group textarea, .form-group select {
+      width: 100%;
+      padding: 0.75rem;
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      font-size: 1rem;
+      font-family: inherit;
+      outline: none;
+    }
+    
+    .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+      border-color: var(--accent);
+    }
+    
+    .form-group textarea { resize: vertical; min-height: 80px; }
+    
+    .form-row { display: flex; gap: 1rem; }
+    .form-row .form-group { flex: 1; }
+    
+    .photo-upload {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.2s;
+    }
+    
+    .photo-upload:hover { border-color: var(--accent); }
+    .photo-upload input { display: none; }
+    
+    .photo-preview {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-top: 0.75rem;
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: var(--accent);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 1rem;
+    }
+    
+    .submit-btn:hover { background: var(--accent-dark); }
     
     footer {
       text-align: center;
@@ -243,9 +320,18 @@
       font-size: 0.85rem;
     }
     
+    .empty {
+      text-align: center;
+      padding: 3rem;
+      color: var(--text-light);
+    }
+    
     @media (max-width: 600px) {
-      .grid { grid-template-columns: repeat(2, 1fr); }
-      h1 { font-size: 1.5rem; }
+      .grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+      h1 { font-size: 1.4rem; }
+      .toolbar { flex-direction: column; }
+      .add-btn { width: 100%; justify-content: center; }
+      .form-row { flex-direction: column; }
     }
   </style>
 </head>
@@ -256,8 +342,13 @@
   </header>
   
   <div class="container">
-    <div class="search-box">
-      <input type="text" id="search" placeholder="🔍 搜索植物...">
+    <div class="toolbar">
+      <div class="search-box">
+        <input type="text" id="search" placeholder="🔍 搜索植物...">
+      </div>
+      <button class="add-btn" onclick="openAddModal()">
+        <span>➕</span> 添加植物
+      </button>
     </div>
     
     <div class="tabs" id="tabs">
@@ -270,151 +361,182 @@
     <div class="grid" id="grid"></div>
   </div>
   
-  <div class="modal" id="modal">
-    <button class="close-btn" onclick="closeModal()">×</button>
+  <!-- Detail Modal -->
+  <div class="modal" id="detailModal">
+    <button class="close-btn" onclick="closeDetail()">×</button>
     <div class="modal-content">
-      <div class="modal-header" id="modal-img"></div>
+      <img class="modal-img" id="detailImg" src="" alt="">
       <div class="modal-body">
-        <div class="modal-name" id="modal-name"></div>
-        <div class="modal-en" id="modal-en"></div>
+        <div class="modal-name" id="detailName"></div>
+        <div class="modal-en" id="detailEn"></div>
+        <span class="card-tag" id="detailTag"></span>
+        
         <div class="modal-section">
           <h3>📖 介绍</h3>
-          <p id="modal-desc"></p>
+          <p id="detailDesc"></p>
         </div>
+        
         <div class="modal-section">
           <h3>🎯 特点</h3>
-          <p id="modal-feature"></p>
+          <p id="detailFeature"></p>
         </div>
+        
         <div class="modal-section">
           <h3>🌍 在哪里可以找到</h3>
-          <p id="modal-location"></p>
+          <p id="detailLocation"></p>
         </div>
+        
+        <a class="wiki-link" id="detailWiki" href="#" target="_blank">
+          🔗 查看维基百科
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Add Plant Modal -->
+  <div class="modal add-modal" id="addModal">
+    <button class="close-btn" onclick="closeAddModal()">×</button>
+    <div class="modal-content">
+      <div class="modal-body">
+        <div class="modal-name" style="margin-bottom:1rem;">➕ 添加新植物</div>
+        
+        <div class="form-group">
+          <label>📷 上传照片</label>
+          <div class="photo-upload" onclick="document.getElementById('photoInput').click()">
+            <input type="file" id="photoInput" accept="image/*" onchange="previewPhoto(event)">
+            <p>点击上传照片</p>
+            <img id="photoPreview" class="photo-preview" style="display:none;">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>🌱 中文名 *</label>
+            <input type="text" id="addName" placeholder="如：荠菜">
+          </div>
+          <div class="form-group">
+            <label>📝 英文名</label>
+            <input type="text" id="addEn" placeholder="如：Dandelion">
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <label>🏷️ 分类 *</label>
+          <select id="addCategory">
+            <option value="野菜">🌱 野菜</option>
+            <option value="花草">🌸 花草</option>
+            <option value="树木">🌳 树木</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label>📖 介绍</label>
+          <textarea id="addDesc" placeholder="这种植物的特点..."></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>🎯 特点</label>
+          <textarea id="addFeature" placeholder="有什么用？"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <label>🌍 在哪里可以找到</label>
+          <input type="text" id="addLocation" placeholder="如：田野、路边">
+        </div>
+        
+        <button class="submit-btn" onclick="savePlant()">💾 保存植物</button>
       </div>
     </div>
   </div>
   
   <footer>
     <p>🌿 毛豆的植物图鉴 · 认识自然 · 快乐成长</p>
+    <p style="margin-top:0.3rem;">共有 <span id="totalCount">0</span> 种植物</p>
   </footer>
   
   <script>
-    const plants = [
+    // Plant data
+    let plants = [
       {
-        id: 1,
-        name: '荠菜',
-        en: 'Shepherd\'s Purse',
-        emoji: '🥬',
-        category: '野菜',
+        id: 1, name: '荠菜', en: "Shepherd's Purse", wiki: 'Capsella_bursa-pastoris',
+        category: '野菜', img: '',
         desc: '春天最常见的野菜，叶子呈羽毛状，开小白花。荠菜饺子是很多人童年记忆里的味道！',
-        feature: '营养丰富，含有丰富的维生素C和钙。可以凉拌、做馅、煮汤。',
+        feature: '营养丰富，含有丰富的维生素C和钙。可以凉拌，做馅、煮汤。',
         location: '田野、路边、花园里，春天到处都能找到'
       },
       {
-        id: 2,
-        name: '蒲公英',
-        en: 'Dandelion',
-        emoji: '🌼',
-        category: '野菜',
+        id: 2, name: '蒲公英', en: 'Dandelion', wiki: 'Taraxacum',
+        category: '野菜', img: '',
         desc: '黄色的小花随着风飘散，种子会变成白色的小绒球，轻轻一吹就像一把把小伞飘向天空。',
         feature: '可以入药，有清热解毒的功效。嫩叶可以泡茶，花朵可以做成蒲公英蜂蜜。',
         location: '草地、路旁、田野，几乎无处不在'
       },
       {
-        id: 3,
-        name: '马齿苋',
-        en: 'Purslane',
-        emoji: '🌿',
-        category: '野菜',
+        id: 3, name: '马齿苋', en: 'Purslane', wiki: 'Portulaca_oleracea',
+        category: '野菜', img: '',
         desc: '趴在地上生长的野菜，茎是红色的，叶子圆圆的厚厚的，摸起来肉肉的。',
         feature: '含有丰富的Omega-3脂肪酸。可以凉拌、炒菜，味道有点酸酸的。',
         location: '菜园、田埂、路边，喜欢阳光充足的地方'
       },
       {
-        id: 4,
-        name: '薰衣草',
-        en: 'Lavender',
-        emoji: '💜',
-        category: '花草',
+        id: 4, name: '薰衣草', en: 'Lavender', wiki: 'Lavandula',
+        category: '花草', img: '',
         desc: '紫色的小花一串串的，闻起来香香的，让人感觉很放松。传说薰衣草可以帮助睡眠哦！',
         feature: '可以做成香包、香精油。有安神、助眠的功效。',
         location: '花园、花店、公园'
       },
       {
-        id: 5,
-        name: '向日葵',
-        en: 'Sunflower',
-        emoji: '🌻',
-        category: '花草',
+        id: 5, name: '向日葵', en: 'Sunflower', wiki: 'Helianthus_annuus',
+        category: '花草', img: '',
         desc: '大大圆圆的黄色花盘，总是追着太阳转，好像一个大大的笑脸！',
         feature: '种子就是葵花籽，可以吃也可以榨油。花盘很大，小朋友可以躲在下面乘凉。',
         location: '农田、花园、公园'
       },
       {
-        id: 6,
-        name: '郁金香',
-        en: 'Tulip',
-        emoji: '🌷',
-        category: '花草',
+        id: 6, name: '郁金香', en: 'Tulip', wiki: 'Tulipa',
+        category: '花草', img: '',
         desc: '花杯形状的美丽花朵，颜色多样，有红色、黄色、粉色、紫色……像一个个精致的高脚杯。',
         feature: '是荷兰的国花。春天开花，花期不长但非常美丽。',
-        location: '公园、花园、花展'
+        location: '公园、花园，花展'
       },
       {
-        id: 7,
-        name: '樱花',
-        en: 'Cherry Blossom',
-        emoji: '🌸',
-        category: '花草',
+        id: 7, name: '樱花', en: 'Cherry Blossom', wiki: 'Prunus_serrulata',
+        category: '花草', img: '',
         desc: '粉色的花瓣轻轻飘落，像下了一场粉色的雨。春天最浪漫的风景！',
         feature: '花期很短，只有几天。樱花落下的时候非常美丽，叫"樱吹雪"。',
         location: '公园、街道、大学校园'
       },
       {
-        id: 8,
-        name: '银杏',
-        en: 'Ginkgo',
-        emoji: '🍂',
-        category: '树木',
+        id: 8, name: '银杏', en: 'Ginkgo', wiki: 'Ginkgo_biloba',
+        category: '树木', img: '',
         desc: '叶子像一把小扇子，秋天会变成金黄色，落下来像铺了一层金色的地毯。',
         feature: '是活化石，恐龙时代就存在了！种子（白果）可以食用，但要去掉外皮。',
         location: '街道、公园、古寺庙'
       },
       {
-        id: 9,
-        name: '松树',
-        en: 'Pine',
-        emoji: '🌲',
-        category: '树木',
+        id: 9, name: '松树', en: 'Pine', wiki: 'Pinus',
+        category: '树木', img: '',
         desc: '一年四季都是绿色的，叶子像细细的针，冬天也不落叶，很坚强！',
         feature: '可以长得很高很大。松果是小松鼠的最爱。松针可以用来泡茶。',
         location: '山林、公园、寺庙'
       },
       {
-        id: 10,
-        name: '桂花',
-        en: 'Osmanthus',
-        emoji: '🌼',
-        category: '花草',
+        id: 10, name: '桂花', en: 'Osmanthus', wiki: 'Osmanthus_fragrans',
+        category: '花草', img: '',
         desc: '小小的黄色花朵，香气扑鼻，闻起来甜甜的。桂花开了，整个街道都能闻到香味！',
         feature: '可以做桂花糕、桂花茶、桂花糖。香气可以持续很久。',
         location: '公园、街道、庭院'
       },
       {
-        id: 11,
-        name: '野菊花',
-        en: 'Wild Chrysanthemum',
-        emoji: '🌻',
-        category: '花草',
+        id: 11, name: '野菊花', en: 'Wild Chrysanthemum', wiki: 'Chrysanthemum_indicum',
+        category: '花草', img: '',
         desc: '小小的黄色花，秋天开在路边田埂，像一个个小太阳。',
         feature: '可以泡茶，有清热明目的功效。生命力很强，到处都能生长。',
         location: '田野、路边、山坡'
       },
       {
-        id: 12,
-        name: '艾草',
-        en: 'Mugwort',
-        emoji: '🌿',
-        category: '野菜',
+        id: 12, name: '艾草', en: 'Mugwort', wiki: 'Artemisia_argyi',
+        category: '野菜', img: '',
         desc: '叶子背面是白色的，有特殊的香味。端午节用来挂门口，可以驱蚊虫！',
         feature: '可以做艾灸、泡脚。清明节可以做青团。有淡淡的草药香。',
         location: '田野、路边、山坡'
@@ -422,74 +544,169 @@
     ];
     
     let currentFilter = 'all';
+    let customPlants = JSON.parse(localStorage.getItem('customPlants') || '[]');
+    let allPlants = [...plants, ...customPlants];
     
-    function renderCards(filter = 'all', search = '') {
+    // Load Wikipedia images
+    async function loadImages() {
+      for (let p of allPlants) {
+        if (!p.img && p.wiki) {
+          try {
+            const res = await fetch(`https://en.wikipedia.org/api/rest_v1/page/summary/${p.wiki}`);
+            const data = await res.json();
+            if (data.thumbnail && data.thumbnail.source) {
+              p.img = data.thumbnail.source.replace(/\/\d+px-/, '/400px-');
+            }
+          } catch(e) {}
+        }
+      }
+      renderCards();
+    }
+    
+    function renderCards() {
       const grid = document.getElementById('grid');
-      let filtered = plants;
+      let filtered = allPlants;
       
-      if (filter !== 'all') {
-        filtered = filtered.filter(p => p.category === filter);
+      if (currentFilter !== 'all') {
+        filtered = filtered.filter(p => p.category === currentFilter);
       }
       
+      const search = document.getElementById('search').value.toLowerCase();
       if (search) {
-        const s = search.toLowerCase();
         filtered = filtered.filter(p => 
-          p.name.includes(s) || 
-          p.en.toLowerCase().includes(s) ||
-          p.desc.includes(s)
+          p.name.includes(search) || 
+          (p.en && p.en.toLowerCase().includes(search)) ||
+          (p.desc && p.desc.includes(search))
         );
       }
       
+      if (filtered.length === 0) {
+        grid.innerHTML = '<div class="empty">没有找到匹配的植物</div>';
+        return;
+      }
+      
       grid.innerHTML = filtered.map(p => `
-        <div class="card" onclick="openModal(${p.id})">
-          <div class="card-img">${p.emoji}</div>
+        <div class="card" onclick="openDetail(${p.id})">
+          ${p.img 
+            ? `<img class="card-img" src="${p.img}" alt="${p.name}" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="card-img" style="display:none;font-size:3rem;display:flex;align-items:center;justify-content:center;background:#e8f5e9;">🌿</div>` 
+            : `<div class="card-img" style="font-size:3rem;display:flex;align-items:center;justify-content:center;">🌿</div>`
+          }
           <div class="card-body">
             <div class="card-name">${p.name}</div>
-            <div class="card-en">${p.en}</div>
+            <div class="card-en">${p.en || ''}</div>
             <span class="card-tag">${p.category}</span>
           </div>
         </div>
       `).join('');
+      
+      document.getElementById('totalCount').textContent = allPlants.length;
     }
     
-    function openModal(id) {
-      const p = plants.find(plant => plant.id === id);
+    function openDetail(id) {
+      const p = allPlants.find(plant => plant.id === id);
       if (!p) return;
       
-      document.getElementById('modal-img').textContent = p.emoji;
-      document.getElementById('modal-name').textContent = p.name;
-      document.getElementById('modal-en').textContent = p.en;
-      document.getElementById('modal-desc').textContent = p.desc;
-      document.getElementById('modal-feature').textContent = p.feature;
-      document.getElementById('modal-location').textContent = p.location;
-      document.getElementById('modal').classList.add('show');
+      document.getElementById('detailImg').src = p.img || '';
+      document.getElementById('detailImg').style.display = p.img ? 'block' : 'none';
+      document.getElementById('detailName').textContent = p.name;
+      document.getElementById('detailEn').textContent = p.en || '';
+      document.getElementById('detailTag').textContent = p.category;
+      document.getElementById('detailDesc').textContent = p.desc || '';
+      document.getElementById('detailFeature').textContent = p.feature || '';
+      document.getElementById('detailLocation').textContent = p.location || '';
+      document.getElementById('detailWiki').href = `https://en.wikipedia.org/wiki/${p.wiki || p.name}`;
+      
+      document.getElementById('detailModal').classList.add('show');
       document.body.style.overflow = 'hidden';
     }
     
-    function closeModal() {
-      document.getElementById('modal').classList.remove('show');
+    function closeDetail() {
+      document.getElementById('detailModal').classList.remove('show');
       document.body.style.overflow = '';
     }
     
-    document.getElementById('modal').addEventListener('click', (e) => {
-      if (e.target.id === 'modal') closeModal();
+    document.getElementById('detailModal').addEventListener('click', (e) => {
+      if (e.target.id === 'detailModal') closeDetail();
     });
     
+    function openAddModal() {
+      document.getElementById('addModal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeAddModal() {
+      document.getElementById('addModal').classList.remove('show');
+      document.body.style.overflow = '';
+      // Reset form
+      document.getElementById('photoPreview').style.display = 'none';
+      document.querySelectorAll('#addModal input, #addModal textarea, #addModal select').forEach(el => el.value = '');
+    }
+    
+    document.getElementById('addModal').addEventListener('click', (e) => {
+      if (e.target.id === 'addModal') closeAddModal();
+    });
+    
+    function previewPhoto(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const preview = document.getElementById('photoPreview');
+          preview.src = e.target.result;
+          preview.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+      }
+    }
+    
+    function savePlant() {
+      const name = document.getElementById('addName').value.trim();
+      const category = document.getElementById('addCategory').value;
+      const desc = document.getElementById('addDesc').value.trim();
+      
+      if (!name || !category) {
+        alert('请填写植物名称和分类');
+        return;
+      }
+      
+      const photo = document.getElementById('photoPreview').src;
+      const isCustomPhoto = photo && !photo.startsWith('data:,');
+      
+      const newPlant = {
+        id: Date.now(),
+        name,
+        en: document.getElementById('addEn').value.trim(),
+        wiki: '',
+        category,
+        img: isCustomPhoto ? photo : '',
+        desc: desc || document.getElementById('addDesc').placeholder,
+        feature: document.getElementById('addFeature').value.trim(),
+        location: document.getElementById('addLocation').value.trim()
+      };
+      
+      customPlants.push(newPlant);
+      localStorage.setItem('customPlants', JSON.stringify(customPlants));
+      allPlants = [...plants, ...customPlants];
+      
+      closeAddModal();
+      loadImages();
+    }
+    
+    // Tab filtering
     document.getElementById('tabs').addEventListener('click', (e) => {
       if (e.target.classList.contains('tab')) {
         document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
         e.target.classList.add('active');
         currentFilter = e.target.dataset.filter;
-        renderCards(currentFilter, document.getElementById('search').value);
+        renderCards();
       }
     });
     
-    document.getElementById('search').addEventListener('input', (e) => {
-      renderCards(currentFilter, e.target.value);
-    });
+    // Search
+    document.getElementById('search').addEventListener('input', renderCards);
     
     // Init
-    renderCards();
+    loadImages();
   </script>
 </body>
 </html>
